@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Ferit-Racunarstvo-Web-programiranje/lv2-Dombah#readme",
   "dependencies": {
+    "ejs": "^3.1.10",
     "express": "^5.1.0"
   }
 }

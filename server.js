@@ -1,16 +1,19 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
-app.use(express.static('public'));
 const fs = require('fs');
 const path = require('path');
-app.set('view engine', 'ejs');
 
-// Set the views directory (optional if you keep views in the default "views" folder)
+app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Serve static files from the 'public' folder
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Redirect root to the gallery page
+app.get('/', (req, res) => {
+    res.redirect('/slike');
+});
 
 // Route to render the gallery page
 app.get('/slike', (req, res) => {
@@ -26,14 +29,7 @@ app.get('/slike', (req, res) => {
     res.render('slike', { images });
   });
 });
-app.get('/', (req, res) => {
-const dataPath = path.join(__dirname, 'images.json');
-const images = JSON.parse(fs.readFileSync(dataPath));
-res.render('slike', { images });
-});
-app.get('/', (req, res) => {
-    res.redirect('/slike');});
-    
+
 app.listen(PORT, () => {
-console.log('Server pokrenut na portu ${PORT}');
+  console.log(`Server pokrenut na portu ${PORT}`);
 });
