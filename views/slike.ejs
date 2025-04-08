@@ -1,0 +1,15 @@
+<main id="main-content" aria-label="Galerija slika">
+    <section class="galerija" aria-labelledby="Galerija slika">
+      <h1>Galerija slika</h1>
+  
+      <% images.forEach((image, index) => { %>
+        <figure class="galerija_slika">
+          <a href="#lightbox-<%= index + 1 %>">
+            <img src="<%= image.src %>" alt="<%= image.alt %>" loading="lazy">
+          </a>
+          <figcaption><%= image.caption %></figcaption>
+        </figure>
+      <% }); %>
+    </section>
+  </main>
+  
